@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // function callBack(){
+    //   console.log('Done');
+    // }
+    // console.log('before setTimeout()');
+    // setTimeout(callBack,2000);
+    // console.log('after setTimeout()');
+
+    // new Promise(function(){});
+    // console.log(Promise)
+
+    // function test(resolve,reject){
+    //   var timeOut = Math.random()*2;
+    //   setTimeout(function(){
+    //     if(timeOut<1){
+    //       console.log('call resolve()....')
+    //       resolve('200 OK');
+    //     }else{
+    //       console.log('call reject()....');
+    //       reject('timeOut in'+timeOut+'seconds');
+    //     }
+    //   },timeOut*1000);
+    // }
+    // // test();
+
+    // var p1 = new Promise(test);
+    // var p2 = p1.then(function(result){
+    //   console.log('成功:'+result);
+    // });
+    // var p3 = p2.catch(function(reason){
+    //   console.log('失败:'+reason)
+    // })
+
+
+/* function fn1(resolve, reject) {
+      resolve('1');
+}
+
+function fn2(resolve, reject) {
+      resolve('2');
+}
+
+new Promise(fn1).then(function(val){
+    console.log(val);
+}).then(
+    console.log(3)
+).then(function(){
+  new Promise(fn2).then(function(val){
+    console.log(val)
+  })
+
+}) */
+
+/* function cook(){
+  console.log('开始做饭。');
+  var p = new Promise(function(resolve,reject){
+    setTimeout(function(){
+      console.log('做饭完毕。');
+      resolve('鸡蛋炒饭');
+    },1000)
+  })
+  return p;
+}
+
+function eat(data){
+  console.log('开始吃饭：'+data);
+  var p = new Promise(function(resolve,reject){
+    setTimeout(function(){
+      console.log('吃饭完毕。');
+      resolve('一块碗和一双筷子');
+    },2000)
+  })
+  return p;
+}
+
+function wash(data){
+  console.log('开始洗碗：'+data);
+  var p = new Promise(function(resolve,reject){
+    setTimeout(function(){
+      console.log('洗完完毕');
+      resolve('干净的碗筷');
+    },2000);
+  });
+  return p;
+}
+
+cook().then(function(data){
+  return eat(data);
+}).then(function(data){
+  console.log(1)
+  return wash(data);
+}).then(function(data){
+  console.log(data)
+}) */
+
+// function cook (){
+//   console.log('开始做饭。');
+//   var p = new Promise(function(resolve,reject){
+//     setTimeout(function(){
+//       console.log('做饭失败。');
+//       reject('烧焦的米饭');
+//     },1000);
+//   });
+//   return p;
+// }
+
+// function eat(data){
+//   console.log('开始吃饭：'+data);
+//   var p = new Promise(function(resolve,reject){
+//     setTimeout(function(){
+//       console.log('吃饭完毕!');
+//       resolve('一块碗和一双筷子');
+//     },2000);
+//   });
+//   return p;
+// }
+// // cook().then(eat,function(data){
+// //   console.log(data+'没法吃')
+// // })
+// cook().then(eat).catch(function(data){
+//   console.log(data+'没法吃!');
+// });
+
+// function cook(){
+//   console.log('开始做饭。');
+//   var p = new Promise(function(resolve,reject){
+//     setTimeout(function(){
+//       console.log('做饭完毕!');
+//       resolve('鸡蛋炒饭')
+//     },1000)
+//   });
+//   return p;
+// }
+
+// function eat(data){
+//   console.log('开始吃饭'+data);
+//   var p = new Promise(function(resolve,reject){
+//     setTimeout(function(){
+//       console.log('吃饭完毕!');
+//       resolve('一块碗和一双筷子')
+//     },2000)
+//   })
+//   return p;
+// }
+
+// cook().then(function(data){
+//   throw new Error('米饭被打翻了');
+//   eat;
+// }).catch(function(err){
+//   console.log(err);
+// })
+
+// function cutUp(){
+//   console.log('开始切菜。');
+//   var p = new Promise(function(resolve,reject){
+//     setTimeout(function(){
+//       console.log('切菜完毕!');
+//       resolve('切好的菜')
+//     },1000);
+//   });
+//   return p;
+// } 
+
+// function boil(){
+//   console.log('开始烧水。');
+//   var p = new Promise(function(resolve,reject){
+//     setTimeout(function(){
+//       console.log('烧水完毕!');
+//       resolve('烧好的水');
+//     },1000);
+//   })
+//   return p;
+// }
+// console.log(Promise.all);
+// Promise.all([cutUp(),boil()]).then(function(results){
+//   console.log('准备工作完毕');
+//   console.log(results);
+// })
+
+// Promise.race([cutUp(),boil()]).then(function(results){
+//   console.log("准备工作完毕");
+//   console.log(results);
+// })
+function requestImg(){
+  var p =new Promise(function(resolve,reject){
+    var img = new Image();
+    img.onload = function(){
+      console.log(1);
+      resolve(img)
+    }
+    img.onerror = function() {
+        console.log("error!")
+    };
+    img.src = 'xxxxxx'
+  });
+  return p;
+}
+
+function timeout(){
+  var p = new Promise(function(resolve,reject){
+    setTimeout(function(){
+      reject('图片请求超时')
+    },5000);
+  });
+  return p;
+}
+Promise.race([requestImg(),timeout()]).then(function(res){
+  console.log(res)
+}).catch(function(err){
+  console.log(err);
+})
+  </script>
+</body>
+</html>
