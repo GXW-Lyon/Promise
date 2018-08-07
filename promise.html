@@ -192,34 +192,36 @@ cook().then(function(data){
 //   console.log("准备工作完毕");
 //   console.log(results);
 // })
-function requestImg(){
-  var p =new Promise(function(resolve,reject){
-    var img = new Image();
-    img.onload = function(){
-      console.log(1);
-      resolve(img)
-    }
-    img.onerror = function() {
-        console.log("error!")
-    };
-    img.src = 'xxxxxx'
-  });
-  return p;
-}
+// function requestImg(){
+//   var p =new Promise(function(resolve,reject){
+//     var img = new Image();
+//     img.onload = function(){
+//       console.log(1);
+//       resolve(img)
+//     }
+//     img.onerror = function() {
+//         console.log("error!")
+//     };
+//     img.src = 'xxxxxx'
+//   });
+//   return p;
+// }
 
-function timeout(){
-  var p = new Promise(function(resolve,reject){
-    setTimeout(function(){
-      reject('图片请求超时')
-    },5000);
-  });
-  return p;
-}
-Promise.race([requestImg(),timeout()]).then(function(res){
-  console.log(res)
-}).catch(function(err){
-  console.log(err);
-})
+// function timeout(){
+//   var p = new Promise(function(resolve,reject){
+//     setTimeout(function(){
+//       reject('图片请求超时')
+//     },5000);
+//   });
+//   return p;
+// }
+// Promise.race([requestImg(),timeout()]).then(function(res){
+//   console.log(res)
+// }).catch(function(err){
+//   console.log(err);
+// })
+console.log(a);
+console.log(1);
   </script>
 </body>
 </html>
